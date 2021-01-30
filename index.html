@@ -55,11 +55,11 @@
             <div class="input-group f-class form-check-inline"">
                 <div>
                     <label id="firstClass-total"  for="">First Class ($150)</label>
-                    <input id ="firstClass-Count" class="inp-style inp-width" type="text" name="" value ="1">
+                    <input id ="firstClass-count" class="inp-style inp-width" type="text" name="" value ="1">
                 </div>
                 <div class="plus-minus-btn">
-                     <button id ="firstClass-Increase"  class="btn btn-primary"><i class="fas fa-plus"></i></button> 
-                     <button id ="firstClass-Decrease"  class="btn btn-success"><i class="fas fa-minus"></i></button>
+                     <button id ="firstClass-increase"  class="btn btn-primary"><i class="fas fa-plus"></i></button> 
+                     <button id ="firstClass-decrease"  class="btn btn-success"><i class="fas fa-minus"></i></button>
                      
                 </div>
             </div>
@@ -67,11 +67,11 @@
             <div class="input-group f-class">
                 <div>
                     <label id ="economy-total" for="">Economy ($100)</label>
-                    <input id="economy-Count" class="inp-style inp-width" type="text" name="" value ="1">
+                    <input id="economy-count" class="inp-style inp-width" type="text" name="" value ="1">
                 </div>
                 <div class="plus-minus-btn">
-                   <button id ="economy-Increase" class="btn btn-primary"><i class="fas fa-plus"></i></button> 
-                    <button id ="economy-Decrease" class="btn btn-success"><i class="fas fa-minus"></i></button>
+                   <button id ="economy-increase" class="btn btn-primary"><i class="fas fa-plus"></i></button> 
+                    <button id ="economy-decrease" class="btn btn-success"><i class="fas fa-minus"></i></button>
                 </div>
             </div>
             <div class="calculations">
@@ -113,19 +113,108 @@
 
 <script>
 
+ // First class 
+    document.getElementById("firstClass-increase").addEventListener("click", function(){
+   handleBookingClass(true);
+       
+    })
 
+     document.getElementById("firstClass-decrease").addEventListener("click", function(){
+       
+       handleBookingClass(false); 
+    })
 
+function handleBookingClass(isIncrease) {
+         const firstClassInput = document.getElementById("firstClass-count");
+        const firstClassCount = parseInt(firstClassInput.value);
+        // const firstClassNewCount = firstClassCount + 1;
+        let firstClassNewCount = firstClassCount;
+        if (isIncrease ==true) {
+            firstClassNewCount =firstClassCount + 1;
+            
+        }
 
+        if (isIncrease ==false && firstClassCount > 0) {
 
+             firstClassNewCount =firstClassCount - 1;
+        }
 
-
-
-
-
+        firstClassInput.value = firstClassNewCount;
+         const firstClassTotal = firstClassNewCount * 150;
+         document.getElementById("firstClass-total").innerText = "First Class ( $"+ firstClassTotal +")";
     
+}
+
+   
+// Economy Class 
+    document.getElementById("economy-increase").addEventListener("click", function(){
+   handleEconomyClass(true);
+       
+    })
+
+     document.getElementById("economy-decrease").addEventListener("click", function(){
+       
+       handleEconomyClass(false); 
+    })
+
+function handleEconomyClass(isIncrease) {
+         const economyInput = document.getElementById("economy-count");
+        const economyCount = parseInt(economyInput.value);
+        let economyNewCount = economyCount;
+        if (isIncrease ==true) {
+           economyNewCount = economyCount + 1;
+            
+        }
+
+        if (isIncrease ==false && economyCount > 0 ) {
+
+           economyNewCount = economyCount - 1;
+        }
+
+        economyInput.value = economyNewCount;
+         const economyTotal = economyNewCount * 100;
+         document.getElementById("economy-total").innerText = "Economy ( $"+ economyTotal +")";
+    
+}
+
+
+
+
+
+/*
+
+    // economy class
+       document.getElementById("economy-increase").addEventListener("click", function(){
+        const economyInput = document.getElementById("economy-count");
+        
+        const economyCount = parseInt(economyInput.value);
+        const economyNewCount = economyCount + 1;
+        economyInput.value = economyNewCount;
+         const economyTotal = economyNewCount * 100;
+         document.getElementById("economy-total").innerText = "Economy ( $"+ economyTotal +")";
+       
+    })
+    document.getElementById("economy-decrease").addEventListener("click", function(){
+        const economyInput = document.getElementById("economy-count");
+        
+        const economyCount = parseInt(economyInput.value);
+        const economyNewCount = economyCount - 1;
+        economyInput.value = economyNewCount;
+         const economyTotal = economyNewCount * 100;
+         document.getElementById("economy-total").innerText = "Economy ( $"+ economyTotal +")";    
+    })
+
+
+
+
+
+
+
+
+   
     // First class 
-    document.getElementById("firstClass-Increase").addEventListener("click", function(){
-        const firstClassInput = document.getElementById("firstClass-Count");
+    document.getElementById("firstClass-increase").addEventListener("click", function(){
+        const firstClassInput = document.getElementById("firstClass-count");
         
         const firstClassCount = parseInt(firstClassInput.value);
         const firstClassNewCount = firstClassCount + 1;
@@ -134,8 +223,8 @@
          document.getElementById("firstClass-total").innerText = "First Class ( $"+ firstClassTotal +")";
        
     })
-    document.getElementById("firstClass-Decrease").addEventListener("click", function(){
-        const firstClassInput = document.getElementById("firstClass-Count");
+    document.getElementById("firstClass-decrease").addEventListener("click", function(){
+        const firstClassInput = document.getElementById("firstClass-count");
         
         const firstClassCount = parseInt(firstClassInput.value);
         const firstClassNewCount = firstClassCount - 1;
@@ -147,8 +236,8 @@
 
     // economy class
 
-       document.getElementById("economy-Increase").addEventListener("click", function(){
-        const economyInput = document.getElementById("economy-Count");
+       document.getElementById("economy-increase").addEventListener("click", function(){
+        const economyInput = document.getElementById("economy-count");
         
         const economyCount = parseInt(economyInput.value);
         const economyNewCount = economyCount + 1;
@@ -157,25 +246,18 @@
          document.getElementById("economy-total").innerText = "Economy ( $"+ economyTotal +")";
        
     })
-    document.getElementById("economy-Decrease").addEventListener("click", function(){
-        const economyInput = document.getElementById("economy-Count");
+    document.getElementById("economy-decrease").addEventListener("click", function(){
+        const economyInput = document.getElementById("economy-count");
         
         const economyCount = parseInt(economyInput.value);
         const economyNewCount = economyCount - 1;
         economyInput.value = economyNewCount;
          const economyTotal = economyNewCount * 100;
-         document.getElementById("economy-total").innerText = "Economy ( $"+ economyTotal +")";
-       
+         document.getElementById("economy-total").innerText = "Economy ( $"+ economyTotal +")";    
     })
-    
-
+*/
 
 </script>
-
-
-
-
-
 
      <!--  Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
